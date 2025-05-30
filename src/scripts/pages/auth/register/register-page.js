@@ -28,7 +28,7 @@ export default class RegisterPage {
               </div>
               <div class="form-buttons">
                 <div id="submit-button-container-reg">
-                  <button class="btn" type="submit">Register</button>
+                  <button class="button" type="submit">Register</button>
                 </div>
                 <p class="register-form__already-have-account">Already have account? <a href="#/login">Login</a></p>
               </div>

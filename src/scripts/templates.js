@@ -17,22 +17,21 @@ export function generateLoaderAbsoluteTemplate() {
 export function generateMainNavigationListTemplate() {
   return `
     <li><a id="article-list-button" class="article-list-button" href="#/">Home</a></li>
-    <li><a id="bookmark-button" class="article-button" href="#/article">Article</a></li>
-    <li><a id="bookmark-button" class="bookmark-button" href="#/prediction">Prediction</a></li>
-    <li><a id="bookmark-button" class="bookmark-button" href="#/learn">Learn</a></li>
+    <li><a id="article-button" class="article-button" href="#/article">Article</a></li>
+    <li><a id="prediction-button" class="prediction-button" href="#/prediction">Prediction</a></li>
+    <li><a id="learn-button" class="learn-button" href="#/learn">Learn</a></li>
   `;
 }
 
 export function generateUnauthenticatedNavigationListTemplate() {
   return `
-    <li id="push-notification-tools" class="push-notification-tools"></li>
+    <li><a id="login" class="login-button" href="#/login"></i> Login</a></li>
+    <li><a id="signup" class="signup-button" href="#/register"></i> Sign Up</a></li>
   `;
 }
 
 export function generateAuthenticatedNavigationListTemplate() {
   return `
-    <li><a id="login" class="login-button" href="#/login"></i> Login</a></li>
-    <li><a id="signup" class="signup-button" href="#/register"></i> Sign Up</a></li>
     <li><a id="logout-button" class="logout-button" href="#/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
   `;
 }
@@ -144,7 +143,7 @@ export function generateArticleDetailTemplate({
   if (Array.isArray(photoUrl)) {
     imagesHtml = photoUrl.reduce(
       (accumulator, photoUrl) =>
-        accumulator.concat(generatearticleDetailImageTemplate(photoUrl, name)),
+        accumulator.concat(generateArticleDetailImageTemplate(photoUrl, name)),
       ""
     );
   } else if (photoUrl) {

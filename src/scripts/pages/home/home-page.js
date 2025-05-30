@@ -1,8 +1,8 @@
 import {
   generateLoaderAbsoluteTemplate,
   generateArticleItemTemplate,
-  generateArticlesListEmptyTemplate,
   generateArticlesListErrorTemplate,
+  generateArticlesListEmptyTemplate,
 } from "../../templates";
 import HomePresenter from "./home-presenter";
 import * as ArticleAPI from "../../data/api";
@@ -28,7 +28,7 @@ export default class HomePage {
       </section>
 
       <section class="container">
-        <h1 class="section-title">Article</h1>
+        <h1 class="section-title">Latest Article</h1>
 
         <div class="articles-list__container">
           <div id="articles-list"></div>
@@ -49,7 +49,7 @@ export default class HomePage {
 
   populateArticlesList(message, articles) {
     if (!articles || articles.length <= 0) {
-      this.populatearticlesListEmpty();
+      this.populateArticlesListEmpty();
       return;
     }
 
@@ -64,12 +64,12 @@ export default class HomePage {
     `;
   }
 
-  populatearticlesListEmpty() {
+  populateArticlesListEmpty() {
     document.getElementById("articles-list").innerHTML =
-      generatearticlesListEmptyTemplate();
+      generateArticlesListEmptyTemplate();
   }
 
-  populatearticlesListError(message) {
+  populateArticlesListError(message) {
     document.getElementById("articles-list").innerHTML =
       generateArticlesListErrorTemplate(message);
   }

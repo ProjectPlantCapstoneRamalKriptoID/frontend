@@ -13,8 +13,15 @@ export default class LoginPage {
         <div class="login-form-section">
         
           <div class="login-form-container">
+         
             <h1 class="login__title">RAMALKRIPTO.ID</h1>
             <h2 class="login__subtitle">Login</h2>
+                <a data-mdb-ripple-init class="btn btn-lg btn-block" href="#!" role="button">
+                   <i class="fab fa-google"></i> Continue with Google
+                </a>
+            <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+          </div>            
             <p class="login__description">Enter your email and password</p>
             
             <form id="login-form" class="login-form">
@@ -29,9 +36,12 @@ export default class LoginPage {
               </p>
               <div class="form-buttons">
                 <div id="submit-button-container">
-                  <button class="btn" type="submit">Login</button>
+                  <button class="button" type="submit">Login</button>
                 </div>
+                
                 <p class="login-form__do-not-have-account">Don't have an account? <a href="#/register">Register</a></p>
+                
+            
               </div>
             </form>
           </div>

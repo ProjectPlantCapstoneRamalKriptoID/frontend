@@ -4,11 +4,7 @@ import {
   generateMainNavigationListTemplate,
   generateUnauthenticatedNavigationListTemplate,
 } from "../templates";
-import {
-  isServiceWorkerAvailable,
-  setupSkipToContent,
-  transitionHelper,
-} from "../utils";
+import { setupSkipToContent, transitionHelper } from "../utils";
 import { getAccessToken, getLogout } from "../utils/auth";
 import { routes } from "../routes/routes";
 
@@ -17,7 +13,6 @@ export default class App {
   #drawerButton;
   #drawerNavigation;
   #skipLinkButton;
-  
 
   constructor({ content, drawerNavigation, drawerButton, skipLinkButton }) {
     this.#content = content;
@@ -88,23 +83,50 @@ export default class App {
   async renderPage() {
     const url = getActiveRoute();
     console.log("url", url);
-    const route = routes[url];
-    console.log("route", route);
+    
+    // Check if route exists
+    if (!routes[url]) {
+      console.error(`Route not found for URL: ${url}`);
+      // Redirect to home or login based on auth status
+      const isAuthenticated = !!getAccessToken();
+      location.hash = isAuthenticated ? "/" : "/login";
+      return;
+    }
 
-    // Get page instance
-    const page = route();
+    try {
+      const route = routes[url];
+      console.log("route", route);
+      
+      // Get page instance
+      const page = route();
 
-    const transition = transitionHelper({
-      updateDOM: async () => {
-        this.#content.innerHTML = await page.render();
-        page.afterRender();
-      },
-    });
+      // Check if page is valid
+      if (!page) {
+        console.error(`Page instance is null for route: ${url}`);
+        const isAuthenticated = !!getAccessToken();
+        location.hash = isAuthenticated ? "/" : "/login";
+        return;
+      }
 
-    transition.ready.catch(console.error);
-    transition.updateCallbackDone.then(() => {
-      scrollTo({ top: 0, behavior: "instant" });
-      this.#setupNavigationList();
-    });
+      const transition = transitionHelper({
+        updateDOM: async () => {
+          this.#content.innerHTML = await page.render();
+          if (typeof page.afterRender === "function") {
+            page.afterRender();
+          }
+        },
+      });
+
+      transition.ready.catch(console.error);
+      transition.updateCallbackDone.then(() => {
+        scrollTo({ top: 0, behavior: "instant" });
+        this.#setupNavigationList();
+      });
+    } catch (error) {
+      console.error("Error rendering page:", error);
+      // Fallback based on authentication status
+      const isAuthenticated = !!getAccessToken();
+      location.hash = isAuthenticated ? "/" : "/login";
+    }
   }
 }

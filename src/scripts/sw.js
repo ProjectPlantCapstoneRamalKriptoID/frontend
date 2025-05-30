@@ -72,14 +72,6 @@ registerRoute(
   })
 );
 
-registerRoute(
-  ({ url }) => {
-    return url.origin.includes("maptiler");
-  },
-  new CacheFirst({
-    cacheName: "maptiler-api",
-  })
-);
 
 // Push notification event handler
 self.addEventListener("push", (event) => {
