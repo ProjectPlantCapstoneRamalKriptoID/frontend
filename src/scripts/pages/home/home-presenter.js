@@ -7,19 +7,19 @@ export default class HomePresenter {
     this.#model = model;
   }
 
-  async showStoriesListMap() {
+  async showStroriesList() {
     this.#view.showMapLoading();
     try {
       const response = await this.#model.getAllStories(1, 50, 1);
 
       if (!response.ok) {
-        console.error("showStorieslistMap: response:", response);
+        console.error("showStroriesList: response:", response);
         return;
       }
 
       await this.#view.initialMap(response.data);
     } catch (error) {
-      console.error("showStoriesListMap: error:", error);
+      console.error("showStroriesList: error:", error);
     } finally {
       this.#view.hideMapLoading();
     }
@@ -28,8 +28,6 @@ export default class HomePresenter {
   async initialArticles() {
     this.#view.showLoading();
     try {
-      // Assuming your API has a method to get articles
-      // Adjust this according to your actual API method
       const response = await this.#model.getAllArticles();
 
       if (!response.ok) {

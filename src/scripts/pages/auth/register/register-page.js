@@ -13,12 +13,12 @@ export default class RegisterPage {
 
           <div class="register-form-container">
             <h1 class="register__title">RAMALKRIPTO.ID</h1>
-            <h2 class="register__subtitle">Create account</h2>
-            <p class="register__description">Use your email for registration</p>
+            <h2 class="register__subtitle">Buat Akun</h2>
+            <p class="register__description">Gunakan email Anda untuk registrasi</p>
             
             <form id="register-form" class="register-form">
               <div class="form-control">
-                <input id="name-input" type="text" name="name" placeholder="Full Name" required>
+                <input id="name-input" type="text" name="name" placeholder="Nama Lengkap" required>
               </div>
               <div class="form-control">
                 <input id="email-input-reg" type="email" name="email" placeholder="Email" required>
@@ -30,7 +30,7 @@ export default class RegisterPage {
                 <div id="submit-button-container-reg">
                   <button class="button" type="submit">Register</button>
                 </div>
-                <p class="register-form__already-have-account">Already have account? <a href="#/login">Login</a></p>
+                <p class="register-form__already-have-account">Sudah punya akun? <a href="#/login">Login</a></p>
               </div>
             </form>
           </div>

@@ -16,10 +16,10 @@ export function generateLoaderAbsoluteTemplate() {
 
 export function generateMainNavigationListTemplate() {
   return `
-    <li><a id="article-list-button" class="article-list-button" href="#/">Home</a></li>
-    <li><a id="article-button" class="article-button" href="#/article">Article</a></li>
-    <li><a id="prediction-button" class="prediction-button" href="#/prediction">Prediction</a></li>
-    <li><a id="learn-button" class="learn-button" href="#/learn">Learn</a></li>
+    <li><a id="article-list-button" class="article-list-button" href="#/">Beranda</a></li>
+    <li><a id="article-button" class="article-button" href="#/article">Artikel</a></li>
+    <li><a id="prediction-button" class="prediction-button" href="#/prediction">Prediksi</a></li>
+    <li><a id="learn-button" class="learn-button" href="#/learn">Edukasi</a></li>
   `;
 }
 
@@ -32,7 +32,27 @@ export function generateUnauthenticatedNavigationListTemplate() {
 
 export function generateAuthenticatedNavigationListTemplate() {
   return `
-    <li><a id="logout-button" class="logout-button" href="#/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+   <li class="profile-container">
+      <button id="profile-button" class="profile-button" type="button">
+        <i class="fas fa-user-circle"></i>
+      </button>
+      <div id="profile-dropdown" class="profile-dropdown">
+        <a href="#/profile" class="profile-dropdown-item">
+          <i class="fas fa-user-circle"></i>
+          Profil pengguna
+        </a>
+        <a href="#/prediction-history" class="profile-dropdown-item">
+          <i class="fas fa-history"></i>
+          Riwayat Prediksi
+        </a>
+        <hr class="profile-dropdown-divider">
+        <a id="logout-button" href="#/logout" class="profile-dropdown-item logout-item">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </div>
+    </li>
+
   `;
 }
 

@@ -16,13 +16,14 @@ export default class LoginPage {
          
             <h1 class="login__title">RAMALKRIPTO.ID</h1>
             <h2 class="login__subtitle">Login</h2>
-                <a data-mdb-ripple-init class="btn btn-lg btn-block" href="#!" role="button">
-                   <i class="fab fa-google"></i> Continue with Google
+                <a data-mdb-ripple-init class="login-btn btn-lg btn-block" href="#!" role="button">
+                <img src="./images/google.png" alt="Google Icon" class="login__google-icon">
+                <span class="login__google-text"> Login dengan Google</span>
                 </a>
             <div class="divider d-flex align-items-center my-4">
             <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
           </div>            
-            <p class="login__description">Enter your email and password</p>
+            <p class="login__description">Masukkan email dan kata sandi Anda</p>
             
             <form id="login-form" class="login-form">
               <div class="form-control">
@@ -32,7 +33,7 @@ export default class LoginPage {
                 <input id="password-input" type="password" name="password" placeholder="Password" required>
               </div>
               <p class="login-form__forgot-password">
-                <a href="#/forgot-password">Forgot Password?</a>  
+                <a href="#/forgot-password">Lupa Kata Sandi?</a>  
               </p>
               <div class="form-buttons">
                 <div id="submit-button-container">
@@ -41,7 +42,6 @@ export default class LoginPage {
                 
                 <p class="login-form__do-not-have-account">Don't have an account? <a href="#/register">Register</a></p>
                 
-            
               </div>
             </form>
           </div>

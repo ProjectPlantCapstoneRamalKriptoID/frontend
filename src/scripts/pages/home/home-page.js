@@ -19,22 +19,57 @@ export default class HomePage {
             src="./images/hero.png"
             alt="Hero Image">
           <div class="hero__content">
-            <h1 class="hero__title">Safer Crypto Investment with Smart Predictions</h1>
+            <h1 class="hero__title">Investasi Kripto yang Lebih Aman dengan Prediksi Cerdas</h1>
             <p class="hero__description">
-              Understand the risks, analyze prices, and make decisions with confidence.
+               Analisi harga dan buat keputusan dengan percaya diri
             </p>
-            <a href="#/prediction" class="hero__button">See  Today’s Prediction</a>
+            <a href="#/prediction" class="hero__button">Mulai Sekarang</a>
+        </div>
+        </div>
+        <div class="hero_bottom">BTC $47.2</div>
+      </section>
+
+      <section class="container">
+        <h1 class="section-title">Artikel terbaru</h1>
+        <div class="articles-list__container">
+          <div id="articles-list"></div>
+          <div id="articles-list-loading-container"></div>
+          <a href="#/article" class="signup-button view-all-articles-button">Lihat Semua Artikel</a>
         </div>
       </section>
 
       <section class="container">
-        <h1 class="section-title">Latest Article</h1>
+        <h1 class="section-title">Tantangan Investor Kripto Indonesia</h1>
+        <div class="cards-container">
+          <div class="cards">
+            <img src="./images/volatility.png" alt="Card Image 1">
+            <h2 class="card__title">Volatilitas Harga</h2>
+            <p class="card__description">Berdasarkan survei terhadap 40 responden, sebagian besar investor mengalami kerugian karena volatilitas harga yang tinggi dan ketidakpastian pasar.</p>
+          </div>
+          <div class="cards">
+            <img src="./images/dart.png" alt="Card Image 2">
+            <h2 class="card__title">Prediksi Kurang Akurat</h2>
+            <p class="card__description">Platform prediksi yang ada saat ini sulit dipahami, tidak bisa disesuaikan dengan waktu tertentu, dan tingkat akurasinya masih rendah.</p>
+          </div>
+          <div class="cards">
+            <img src="./images/clock.png" alt="Card Image 3">
+            <h2 class="card__title">Kurang Monitoring Real-time</h2>
+            <p class="card__description">Hanya 35% investor yang memantau harga secara harian, sementara 80% menginginkan prediksi harian atau real-time untuk keputusan yang lebih baik.</p>
+          </div>
+          </div>
+      </section>
 
-        <div class="articles-list__container">
-          <div id="articles-list"></div>
-          <div id="articles-list-loading-container"></div>
+      <section class="container">
+        <div class="start_prediction">
+          <h1 class="start_prediction-title">Mulai Prediksi Sekarang</h1>
+          <p class="start_prediction__description">
+              Dapatkan prediksi berbasis AI untuk Bitcoin. Buat keputusan investasi yang lebih cerdas dengan teknologi LSTM-GRU terdepan.
+          </p>
+          <a href="#/prediction" class="start_prediction__button">Prediksi Sekarang</a>
         </div>
       </section>
+
+      
     `;
   }
 
