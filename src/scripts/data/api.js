@@ -1,133 +1,87 @@
 // src\scripts\data\api.js
 
-import { getAccessToken } from "../utils/auth";
-import { BASE_URL } from "../config";
+import { BASE_URL, API_KEY } from "../config";
 
 const ENDPOINTS = {
-  // Auth
-  REGISTER: `${BASE_URL}/register`,
-  LOGIN: `${BASE_URL}/login`,
-  MY_USER_INFO: `${BASE_URL}/users/me`,
-
   // Articles
-  ARTICLES_LIST: `${BASE_URL}/articles`,
-  ARTICLE_DETAIL: (id) => `${BASE_URL}/articles/${id}`,
+  ARTICLES_LIST: `${BASE_URL}/article/list`,
 };
 
-export async function getRegistered({ name, email, password }) {
-  const data = JSON.stringify({ name, email, password });
+export async function getAllArticles(page = 1, limit = 12) {
+  try {
+    const url = new URL(ENDPOINTS.ARTICLES_LIST);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("apikey", API_KEY);
 
-  const fetchResponse = await fetch(ENDPOINTS.REGISTER, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: data,
-  });
-  const json = await fetchResponse.json();
+    if (page > 1) {
+      url.searchParams.append("page", page);
+    }
 
-  return {
-    ...json,
-    ok: fetchResponse.ok,
-  };
-}
+    const fetchResponse = await fetch(url.toString(), {
+      headers: { "Content-Type": "application/json" },
+    });
 
-export async function getLogin({ email, password }) {
-  const data = JSON.stringify({ email, password });
+    if (!fetchResponse.ok) {
+      throw new Error(`HTTP error! status: ${fetchResponse.status}`);
+    }
 
-  const fetchResponse = await fetch(ENDPOINTS.LOGIN, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: data,
-  });
-  const json = await fetchResponse.json();
+    const json = await fetchResponse.json();
+    console.log("getAllArticles response:", json);
 
-  return {
-    ...json,
-    ok: fetchResponse.ok,
-  };
-}
-
-export async function getMyUserInfo() {
-  const accessToken = getAccessToken();
-
-  const fetchResponse = await fetch(ENDPOINTS.MY_USER_INFO, {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-  const json = await fetchResponse.json();
-
-  return {
-    ...json,
-    ok: fetchResponse.ok,
-  };
-}
-
-export async function getAllArticles(page = 1, size = 10, location = 0) {
-  const accessToken = getAccessToken();
-
-  const url = new URL(ENDPOINTS.ARTICLES_LIST);
-  url.searchParams.append("page", page);
-  url.searchParams.append("size", size);
-  url.searchParams.append("location", location);
-
-  const fetchResponse = await fetch(ENDPOINTS.ARTICLES_LIST, {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-  const json = await fetchResponse.json();
-
-  console.log("API Response:", json);
-
-  const tranformedData = json.listArticle
-    ? json.listArticle.map((article) => {
-        const hasValidLocation =
-          typeof article.lat === "number" && typeof article.lon === "number";
-
-        return {
-          ...article,
-          location: hasValidLocation
-            ? {
-                latitude: article.lat,
-                longitude: article.lon,
-              }
-            : null,
-        };
-      })
-    : [];
-
-  return {
-    ...json,
-    ok: fetchResponse.ok,
-    data: tranformedData,
-  };
-}
-
-export async function getArticleById(id) {
-  const accessToken = getAccessToken();
-
-  const fetchResponse = await fetch(ENDPOINTS.ARTICLE_DETAIL(id), {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-  const json = await fetchResponse.json();
-
-  let transformedarticle = null;
-  if (json.article) {
-    const hasValidLocation =
-      typeof json.article.lat === "number" && typeof json.article.lon === "number";
-
-    transformedarticle = {
-      ...json.article,
-      location: hasValidLocation
-        ? {
-            latitude: json.article.lat,
-            longitude: json.article.lon,
-          }
-        : null,
+    return {
+      success: fetchResponse.ok,
+      ok: fetchResponse.ok,
+      data: json.Data || [],
+      message: json.message || "Data fetched successfully",
+      total: json.total || (json.Data ? json.Data.length : 0),
+    };
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    return {
+      success: false,
+      ok: false,
+      data: [],
+      message: error.message || "Failed to fetch articles",
+      total: 0,
     };
   }
-
-  return {
-    ...json,
-    ok: fetchResponse.ok,
-    data: transformedarticle,
-  };
 }
+export async function getArticle(page = 1, limit = 6) {
+  try {
+    const url = new URL(ENDPOINTS.ARTICLES_LIST);
+    url.searchParams.append("limit", limit);
+    url.searchParams.append("apikey", API_KEY);
 
+    if (page > 1) {
+      url.searchParams.append("page", page);
+    }
 
+    const fetchResponse = await fetch(url.toString(), {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!fetchResponse.ok) {
+      throw new Error(`HTTP error! status: ${fetchResponse.status}`);
+    }
+
+    const json = await fetchResponse.json();
+    console.log("getAllArticles response:", json);
+
+    return {
+      success: fetchResponse.ok,
+      ok: fetchResponse.ok,
+      data: json.Data || [],
+      message: json.message || "Data fetched successfully",
+      total: json.total || (json.Data ? json.Data.length : 0),
+    };
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    return {
+      success: false,
+      ok: false,
+      data: [],
+      message: error.message || "Failed to fetch articles",
+      total: 0,
+    };
+  }
+}

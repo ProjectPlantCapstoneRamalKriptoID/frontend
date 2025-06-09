@@ -11,20 +11,22 @@ export default class LoginPage {
     return `
       <section class="login-container">
         <div class="login-form-section">
-        
+
           <div class="login-form-container">
-         
             <h1 class="login__title">RAMALKRIPTO.ID</h1>
             <h2 class="login__subtitle">Login</h2>
-                <a data-mdb-ripple-init class="login-btn btn-lg btn-block" href="#!" role="button">
+
+                <a data-mdb-ripple-init class="google btn-lg btn-block" href="#!" role="button">
                 <img src="./images/google.png" alt="Google Icon" class="login__google-icon">
                 <span class="login__google-text"> Login dengan Google</span>
                 </a>
+
             <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-          </div>            
+              <p class="text-center fw-bold mx-3 mb-0 text-muted">ATAU</p>
+            </div>  
+
             <p class="login__description">Masukkan email dan kata sandi Anda</p>
-            
+          
             <form id="login-form" class="login-form">
               <div class="form-control">
                 <input id="email-input" type="email" name="email" placeholder="Email" required>
@@ -41,15 +43,16 @@ export default class LoginPage {
                 </div>
                 
                 <p class="login-form__do-not-have-account">Don't have an account? <a href="#/register">Register</a></p>
-                
               </div>
             </form>
+            
           </div>
 
            <div class="login-image-container">
-          <img class="login-image" src="./images/hero.png" alt="Bitcoin Image">
+          <img class="login-image" src="./images/hero.jpeg" alt="Bitcoin Image">
           </div>
         </div>
+
        
       </section>
     `;

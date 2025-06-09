@@ -34,7 +34,7 @@ export function generateAuthenticatedNavigationListTemplate() {
   return `
    <li class="profile-container">
       <button id="profile-button" class="profile-button" type="button">
-        <i class="fas fa-user-circle"></i>
+      <img src="./images/boy.png" alt="Profile Icon" class="profile-icon">
       </button>
       <div id="profile-dropdown" class="profile-dropdown">
         <a href="#/profile" class="profile-dropdown-item">
@@ -60,7 +60,7 @@ export function generateArticlesListEmptyTemplate() {
   return `
     <div id="articles-list-empty" class="articles-list__empty">
       <i class="fas fa-inbox stories-list__empty-icon"></i>
-      <p>There is no article available</p>
+      <p>Tidak ada artikel yang tersedia</p>
     </div>
   `;
 }
@@ -76,64 +76,55 @@ export function generateArticlesListErrorTemplate(message) {
   `;
 }
 
-export function generateArticleDetailErrorTemplate(message) {
-  return `
-    <div id="articles-detail-error" class="articles-detail__error">
-      <h2>Terjadi kesalahan pengambilan detail cerita</h2>
-      <p>${
-        message ? message : "Gunakan jaringan lain atau laporkan error ini."
-      }</p>
-    </div>
-  `;
-}
+export function generateArticleItemTemplate(article) {
+  const id = article.ID || article.id || "";
+  const title = article.TITLE || article.title || "No Title";
+  const imageUrl =
+    article.IMAGE_URL || article.imageUrl || "images/placeholder-image.jpg";
+  const author = article.AUTHORS || article.authors || "Unknown Author";
+  const body =
+    article.BODY ||
+    article.body ||
+    article.SUBTITLE ||
+    "No description available.";
+  const url = article.URL || article.url || "#";
+  const published_on =
+    article.PUBLISHED_ON || article.publishedOn || article.CREATED_ON;
 
-export function generateArticleItemTemplate({
-  id,
-  name,
-  description,
-  photoUrl,
-  createdAt,
-  location,
-}) {
   return `
     <div tabindex="0" class="article-item" data-articleid="${id}">
       <img class="article-item__image" src="${
-        Array.isArray(photoUrl) ? photoUrl[0] : photoUrl
-      }" alt="${name}" loading="lazy">
+        Array.isArray(imageUrl) ? imageUrl[0] : imageUrl
+      }" alt="${title}" loading="lazy">
       <div class="article-item__body">
         <div class="article-item__main">
           <div class="article-item__more-info">
             <div class="article-item__createdat">
               <i class="fas fa-calendar-alt"></i> ${showFormattedDate(
-                createdAt,
-                "id-ID"
+                published_on * 1000,
+                "en-US"
               )}
             </div>
             <div class="article-item__header">
-              <h3 class="article-item__title">
-                <a href="#/stories/${id}" class="article-item__title-link">Ditulis oleh: ${name}</a>
-              </h3>
+              <h2 class="article-item__title">${title}</h2>
+              <div class="article-item__author">
+                <i class="fas fa-user"></i>Author : ${author}
+              </div>
              </div>
-            <div class="article-item__location">
-              <i class="fas fa-map"></i> ${Object.values(location)}
-            </div>
+            
           </div>
         </div>
         <div id="article-description" class="article-item__description">
-          ${
-            description.length > 100
-              ? description.substring(0, 100) + "..."
-              : description
-          }
+          ${body.length > 100 ? body.substring(0, 100) + "..." : body}
         </div>
-      
-        <a class="btn article-item__read-more" href="#/articles/${id}">
-          Selengkapnya <i class="fas fa-arrow-right"></i>
-        </a>
+        <div class="article-item__url">
+          <a href="${url}" target="_blank" rel="noopener noreferrer" class="article-item__url-link">
+          Selengkapnya
+          <i class="fas fa-angle-double-right"></i>       
+          </a>
+        </div>
       </div>
     </div>
-
-    
   `;
 }
 
@@ -146,83 +137,5 @@ export function generateArticleDetailImageTemplate(imageUrl = null, alt = "") {
 
   return `
     <img class="article-detail__image" src="${imageUrl}" alt="${alt}">
-  `;
-}
-
-export function generateArticleDetailTemplate({
-  name,
-  description,
-  photoUrl,
-  latitudeLocation,
-  longitudeLocation,
-  createdAt,
-}) {
-  const createdAtFormatted = showFormattedDate(createdAt, "id-ID");
-
-  let imagesHtml = "";
-  if (Array.isArray(photoUrl)) {
-    imagesHtml = photoUrl.reduce(
-      (accumulator, photoUrl) =>
-        accumulator.concat(generateArticleDetailImageTemplate(photoUrl, name)),
-      ""
-    );
-  } else if (photoUrl) {
-    // Handle case when photoUrl is a single string
-    imagesHtml = generateArticleDetailImageTemplate(photoUrl, name);
-  }
-
-  return `
-    <div class="article-detail__header">
-
-      <div class="article-detail__more-info">
-        <div class="article-detail__more-info__inline">
-          <div id="createdat" class="article-detail__createdat" data-value="${createdAtFormatted}"><i class="fas fa-calendar-alt"></i></div>
-        </div>
-        <div class="article-detail__more-info__inline">
-          <div id="location-latitude" class="article-detail__location__latitude" data-value="${latitudeLocation}">Latitude:</div>
-          <div id="location-longitude" class="article-detail__location__longitude" data-value="${longitudeLocation}">Longitude:</div>
-        </div>
-        <div id="author" class="article-detail__author" data-value="${name}">Ditulis oleh:</div>
-      </div>
-     
-    </div>
-
-    <div class="container">
-      <div class="article-detail__images__container">
-        <div id="images" class="article-detail__images">${imagesHtml}</div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="article-detail__body">
-        <div class="article-detail__body__description__container">
-          <h2 class="article-detail__description__title">Informasi Lengkap</h2>
-          <div id="description" class="article-detail__description__body">
-            ${description}
-          </div>
-        </div>
-      
-        <hr>
-  
-        
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-export function generateSaveArticleButtonTemplate() {
-  return `
-    <button id="article-detail-save" class="btn btn-transparent">
-      Save <i class="far fa-bookmark"></i>
-    </button>
-  `;
-}
-
-export function generateRemoveArticleButtonTemplate() {
-  return `
-    <button id="article-detail-remove" class="btn btn-transparent">
-      Remove <i class="fas fa-bookmark"></i>
-    </button>
   `;
 }

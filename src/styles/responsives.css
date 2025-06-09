@@ -23,7 +23,7 @@
   }
 }
 
-@media screen and (width > 600px) {
+@media screen and (min-width: 601px) and (max-width: 1000px) {
   ::view-transition-old(root) {
     animation: fade-out 90ms cubic-bezier(0.4, 0, 1, 1) both,
       slide-to-left 300ms cubic-bezier(0.4, 0, 0.2, 1) both;
@@ -32,6 +32,13 @@
   ::view-transition-new(root) {
     animation: fade-in 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both,
       slide-from-right 300ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .profile-dropdown {
@@ -43,35 +50,23 @@
     padding: 13px 16px;
     font-size: 14px;
   }
+
+  .article-item {
+    flex: 1 1 calc(50% - 10px);
+    max-width: none;
+  }
+
+  #articles-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
 }
 
-@media screen and (width > 800px) {
-  /* MAIN */
-  .articles-list__map__container,
-  .articles-list__map {
-    height: 500px;
-  }
-
-  .articles-list {
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-  }
-
-  /* article detail */
-  .article-detail__body-container {
-    inset-block-start: -200px;
-  }
-
-  .article-detail__images {
-    height: 500px;
-  }
-
-  .articles-list {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .contact-info {
-    justify-content: center;
+@media screen and (width < 900px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
   }
 
   .brand-name__link__text {
@@ -86,12 +81,17 @@
     display: block;
   }
 
+  .header-content {
+    padding: 15px 20px;
+    min-height: 70px;
+  }
+
   .navigation-drawer {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 70px);
     background-color: white;
     flex-direction: row;
     gap: 20px;
@@ -100,6 +100,7 @@
     opacity: 0;
     transition: opacity 150ms, transform 150ms;
     z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .navigation-drawer.open {
@@ -133,9 +134,130 @@
     padding: 12px 16px;
     font-size: 14px;
   }
+
+  .hero {
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .hero__description {
+    font-size: 1.2rem;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__button {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+
+  .hero__image {
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  /* MAIN */
+  .main-content .section-title {
+    font-size: 2rem;
+    padding-block: 30px 25px;
+  }
+
+  .articles-list__map__container,
+  .articles-list__map {
+    height: auto;
+  }
+
+  .articles-list__container {
+    grid-template-columns: repeat(2, minmax(80px, 1fr));
+    gap: 20px;
+  }
+
+  #articles-list {
+    grid-template-columns: 1fr;
+  }
+
+  .articles-container {
+    flex-direction: column;
+  }
+
+  .article-item {
+    flex: 1 1 100%;
+    max-width: none;
+    min-width: auto;
+  }
+
+  /* FOOTER */
+  .footer-container {
+    padding: 30px 15px;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .brand-section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 auto;
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .login-container {
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .login-form-section,
+  .register-form-section {
+    height: auto;
+    min-height: auto;
+    max-width: 100%;
+  }
+
+  .login-form-container,
+  .register-form-container {
+    padding: 30px 20px;
+  }
+
+  .login__title,
+  .register__title {
+    font-size: 1.6rem;
+  }
+
+  .login__subtitle,
+  .register__subtitle {
+    font-size: 1.2rem;
+  }
+
+  
 }
-
-
 
 @media screen and (width > 1000px) {
   /* HEADER */
@@ -187,11 +309,12 @@
     height: 600px;
   }
 
+  #articles-list,
   .articles-list {
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(80px, 1fr));
   }
 
-  .article-detail__images {
-    height: 600px;
+  .article-item {
+    flex: 1 1 calc(50% - 10px);
   }
 }

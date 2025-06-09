@@ -1,4 +1,4 @@
-export default class HomePresenter {
+export default class ArticlePresenter {
   #view;
   #model;
 
@@ -10,7 +10,7 @@ export default class HomePresenter {
   async initialArticles() {
     this.#view.showLoading();
     try {
-      const response = await this.#model.getArticle();
+      const response = await this.#model.getAllArticles();
 
       if (!response.ok) {
         console.error("initialArticles: response:", response);

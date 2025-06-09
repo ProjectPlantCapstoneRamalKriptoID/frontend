@@ -16,7 +16,7 @@ export default class HomePage {
         <div class="hero">
           <img
             class="hero__image"
-            src="./images/hero.png"
+            src="./images/hero.jpeg"
             alt="Hero Image">
           <div class="hero__content">
             <h1 class="hero__title">Investasi Kripto yang Lebih Aman dengan Prediksi Cerdas</h1>
@@ -26,7 +26,6 @@ export default class HomePage {
             <a href="#/prediction" class="hero__button">Mulai Sekarang</a>
         </div>
         </div>
-        <div class="hero_bottom">BTC $47.2</div>
       </section>
 
       <section class="container">
@@ -34,8 +33,12 @@ export default class HomePage {
         <div class="articles-list__container">
           <div id="articles-list"></div>
           <div id="articles-list-loading-container"></div>
-          <a href="#/article" class="signup-button view-all-articles-button">Lihat Semua Artikel</a>
         </div>
+
+        <div class="articles-list__footer">
+          <a href="#/article" class="signup-button view-all-articles-button">Lebih Banyak</a>
+        </div>
+          
       </section>
 
       <section class="container">
@@ -92,11 +95,7 @@ export default class HomePage {
       .map((article) => generateArticleItemTemplate(article))
       .join("");
 
-    document.getElementById("articles-list").innerHTML = `
-      <div class="articles-container">
-        ${articlesHTML}
-      </div>
-    `;
+    document.getElementById("articles-list").innerHTML = articlesHTML;
   }
 
   populateArticlesListEmpty() {

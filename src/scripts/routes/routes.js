@@ -4,6 +4,7 @@ import HomePage from "../pages/home/home-page";
 import PredictionPage from "../pages/prediction/prediction-page";
 import ProfilePage from "../pages/profile/profile-page";
 import PredictionHistoryPage from "../pages/prediction-history/prediction-history-page";
+import ArticlePage from "../pages/article/article-page";
 
 import {
   checkAuthenticatedRoute,
@@ -18,4 +19,5 @@ export const routes = {
   "/profile": () => checkAuthenticatedRoute(new ProfilePage()),
   "/prediction-history": () =>
     checkAuthenticatedRoute(new PredictionHistoryPage()),
+  "/article": () => checkAuthenticatedRoute(new ArticlePage()),
 };

@@ -36,7 +36,7 @@ export default class RegisterPage {
           </div>
           
            <div class="register-image-container">
-          <img class="register-image" src="./images/hero.png" alt="Bitcoin Image">
+          <img class="register-image" src="./images/hero.jpeg" alt="Bitcoin Image">
            </div>
         </div>
        
