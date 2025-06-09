@@ -102,3 +102,13 @@ export function improvedCheckUnauthenticatedRouteOnly(page) {
 export function getLogout() {
   localStorage.removeItem('accessToken');
 }
+
+export function setDummyToken() {
+  localStorage.setItem('accessToken', 'dummy-development-token');
+  console.log('Dummy token set for development');
+}
+
+// Auto-set dummy token jika dalam development mode
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+  setDummyToken();
+}
