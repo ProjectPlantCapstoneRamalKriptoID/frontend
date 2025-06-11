@@ -18,7 +18,7 @@ export default class ArticlePage {
           <div id="articles-list"></div>
           <div id="articles-list-loading-container"></div>
         </div>      
-        </section>`;
+     </section>`;
   }
 
   async afterRender() {

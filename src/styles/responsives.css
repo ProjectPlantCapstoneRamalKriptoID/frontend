@@ -111,7 +111,7 @@
 
   .navigation-drawer__navlist-main,
   .navigation-drawer__navlist {
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
     width: 100%;
   }

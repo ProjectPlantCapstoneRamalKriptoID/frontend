@@ -19,39 +19,7 @@ export function generateMainNavigationListTemplate() {
     <li><a id="article-list-button" class="article-list-button" href="#/">Beranda</a></li>
     <li><a id="article-button" class="article-button" href="#/article">Artikel</a></li>
     <li><a id="prediction-button" class="prediction-button" href="#/prediction">Prediksi</a></li>
-  `;
-}
-
-export function generateUnauthenticatedNavigationListTemplate() {
-  return `
-    <li><a id="login" class="login-button" href="#/login"></i> Login</a></li>
-    <li><a id="signup" class="signup-button" href="#/register"></i> Sign Up</a></li>
-  `;
-}
-
-export function generateAuthenticatedNavigationListTemplate() {
-  return `
-   <li class="profile-container">
-      <button id="profile-button" class="profile-button" type="button">
-      <img src="./images/boy.png" alt="Profile Icon" class="profile-icon">
-      </button>
-      <div id="profile-dropdown" class="profile-dropdown">
-        <a href="#/profile" class="profile-dropdown-item">
-          <i class="fas fa-user-circle"></i>
-          Profil pengguna
-        </a>
-        <a href="#/prediction-history" class="profile-dropdown-item">
-          <i class="fas fa-history"></i>
-          Riwayat Prediksi
-        </a>
-        <hr class="profile-dropdown-divider">
-        <a id="logout-button" href="#/logout" class="profile-dropdown-item logout-item">
-          <i class="fas fa-sign-out-alt"></i>
-          Logout
-        </a>
-      </div>
-    </li>
-
+    <li><a id="prediction-button" class="prediction-button" href="#/prediction-history">Riwayat Prediksi</a></li>
   `;
 }
 
@@ -124,17 +92,5 @@ export function generateArticleItemTemplate(article) {
         </div>
       </div>
     </div>
-  `;
-}
-
-export function generateArticleDetailImageTemplate(imageUrl = null, alt = "") {
-  if (!imageUrl) {
-    return `
-      <img class="article-detail__image" src="images/placeholder-image.jpg" alt="Placeholder Image">
-    `;
-  }
-
-  return `
-    <img class="article-detail__image" src="${imageUrl}" alt="${alt}">
   `;
 }

@@ -42,7 +42,7 @@ export default class LoginPage {
                   <button class="button" type="submit">Login</button>
                 </div>
                 
-                <p class="login-form__do-not-have-account">Don't have an account? <a href="#/register">Register</a></p>
+                <p class="login-form__do-not-have-account">Tidak punya akun? <a href="#/register">Register</a></p>
               </div>
             </form>
             
