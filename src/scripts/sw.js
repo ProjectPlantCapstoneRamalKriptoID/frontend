@@ -7,7 +7,7 @@ import {
   CacheFirst,
   StaleWhileRevalidate,
 } from "workbox-strategies";
-import { BASE_URL } from "./config";
+import { BACKEND_BASE_URL } from "./config";
 
 // Do precaching
 const manifest = self.__WB_MANIFEST;
@@ -54,7 +54,7 @@ registerRoute(
 
 registerRoute(
   ({ request, url }) => {
-    const baseUrl = new URL(BASE_URL);
+    const baseUrl = new URL(BACKEND_BASE_URL);
     return baseUrl.origin === url.origin && request.destination !== "image";
   },
   new NetworkFirst({
@@ -64,7 +64,7 @@ registerRoute(
 
 registerRoute(
   ({ request, url }) => {
-    const baseUrl = new URL(BASE_URL);
+    const baseUrl = new URL(BACKEND_BASE_URL);
     return baseUrl.origin === url.origin && request.destination === "image";
   },
   new StaleWhileRevalidate({

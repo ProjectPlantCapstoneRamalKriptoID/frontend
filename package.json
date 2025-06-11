@@ -27,7 +27,9 @@
     "workbox-webpack-plugin": "^7.3.0"
   },
   "dependencies": {
+    "apexcharts": "^4.7.0",
     "leaflet": "^1.9.4",
+    "lightweight-charts": "^5.0.7",
     "tiny-slider": "^2.9.4",
     "web-push": "^3.6.7",
     "workbox-cacheable-response": "^7.3.0",

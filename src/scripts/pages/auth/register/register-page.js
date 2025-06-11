@@ -1,5 +1,5 @@
 import RegisterPresenter from "./register-presenter";
-import * as StoryAppAPI from "../../../data/api";
+import * as ArticleAPI from "../../../data/api";
 
 export default class RegisterPage {
   #presenter = null;
@@ -47,7 +47,7 @@ export default class RegisterPage {
   async afterRender() {
     this.#presenter = new RegisterPresenter({
       view: this,
-      model: StoryAppAPI,
+      model: ArticleAPI,
     });
 
     this.#setupForm();
@@ -59,39 +59,62 @@ export default class RegisterPage {
       .addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const data = {
-          name: document.getElementById("name-input").value,
-          email: document.getElementById("email-input-reg").value,
-          password: document.getElementById("password-input-reg").value,
-        };
-        await this.#presenter.getRegistered(data);
+        const name = document.getElementById("name-input").value.trim();
+        const email = document.getElementById("email-input-reg").value.trim();
+        const password = document.getElementById("password-input-reg").value;
+
+        if (!name) {
+          this.registerFailed("Nama lengkap harus diisi");
+          return;
+        }
+
+        if (!email) {
+          this.registerFailed("Email harus diisi");
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          this.registerFailed("Format email tidak valid");
+          return;
+        }
+
+        if (password.length < 8) {
+          this.registerFailed("Password harus minimal 8 karakter");
+          return;
+        }
+
+        const data = { name, email, password };
+        await this.#presenter.getRegister(data);
       });
   }
 
-  registeredSuccessfully(message) {
-    console.log(message);
+  registerSuccessfully(message) {
+    const fullMessage =
+      message +
+      "\n\nSilakan cek email Anda dan klik link verifikasi sebelum melakukan login.";
+    alert(fullMessage);
 
     document.body.classList.remove("auth-page");
-
     // Redirect
     location.hash = "/login";
   }
 
-  registeredFailed(message) {
+  registerFailed(message) {
     alert(message);
   }
 
   showSubmitLoadingButton() {
     document.getElementById("submit-button-container-reg").innerHTML = `
       <button class="btn" type="submit" disabled>
-        <i class="fas fa-spinner loader-button"></i> Create account
+        <i class="fas fa-spinner loader-button"></i> Membuat Akun...
       </button>
     `;
   }
 
   hideSubmitLoadingButton() {
     document.getElementById("submit-button-container-reg").innerHTML = `
-      <button class="btn" type="submit">Create account</button>
+      <button class="btn" type="submit">Register</button>
     `;
   }
 

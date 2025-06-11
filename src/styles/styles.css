@@ -110,7 +110,8 @@ body {
   color: white !important;
 }
 
-.button[disabled] {
+.button[disabled],
+.btn[disabled] {
   background-color: #ac7432;
   cursor: not-allowed;
 }
@@ -593,9 +594,10 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 90vh;
+  width: 100%;
+  height: 100%;
 }
 
 .login-form-container,
@@ -1313,4 +1315,11 @@ footer {
   text-align: center;
   margin-bottom: 20px;
   padding: 20px 20px;
+}
+
+#chart {
+  max-width: 1200px;
+  margin: 35px auto;
+  width: 100%;
+  height: auto;
 }

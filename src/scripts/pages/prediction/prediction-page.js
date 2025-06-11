@@ -20,7 +20,7 @@ export default class PredictionPage {
                      <option value="1">LSTM-GRU</option>
                 </select>
                 <label for="customRange2" class="form-label">Prediksi Ke Jam-</label>
-                <input type="range" class="form-range" min="1" max="5" id="customRange2">
+                <input type="range" class="form-range" min="1" max="24" id="customRange2">
 
                 <div class="form-buttons">
                     <div id="submit-button-container">

@@ -53,7 +53,6 @@ export default class LoginPage {
           </div>
         </div>
 
-       
       </section>
     `;
   }
@@ -74,42 +73,71 @@ export default class LoginPage {
       .addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const data = {
-          email: document.getElementById("email-input").value,
-          password: document.getElementById("password-input").value,
-        };
+        const email = document.getElementById("email-input").value.trim();
+        const password = document.getElementById("password-input").value;
+
+        if (!email) {
+          this.loginFailed("Email harus diisi");
+          return;
+        }
+
+        if (!password) {
+          this.loginFailed("Password harus diisi");
+          return;
+        }
+
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          this.loginFailed("Format email tidak valid");
+          return;
+        }
+
+        const data = { email, password };
         await this.#presenter.getLogin(data);
       });
   }
 
-  loginSuccessfully(message) {
-    console.log(message);
-
+  loginSuccessfully(message, data) {
+    alert(message);
     document.body.classList.remove("auth-page");
 
-    // Redirect
+    if (data && data.loginResult && data.loginResult.token) {
+      console.log("Login token:", data.loginResult.token);
+    }
+
+    // Redirect to home or dashboard
     location.hash = "/";
   }
 
   loginFailed(message) {
-    alert(message);
+    if (
+      message.includes("email not verified") ||
+      message.includes("Email belum diverifikasi")
+    ) {
+      const enhancedMessage =
+        message +
+        "\n\n💡 Tips:\n• Cek folder spam/junk email Anda\n• Pastikan Anda mengklik link verifikasi di email\n• Jika tidak menerima email, coba daftar ulang";
+      alert(enhancedMessage);
+    } else {
+      alert(message);
+    }
   }
 
   showSubmitLoadingButton() {
     document.getElementById("submit-button-container").innerHTML = `
-      <button class="btn" type="submit" disabled>
-        <i class="fas fa-spinner loader-button"></i> Login
+      <button class="button" type="submit" disabled>
+        <i class="fas fa-spinner loader-button"></i> Masuk...
       </button>
     `;
   }
 
   hideSubmitLoadingButton() {
     document.getElementById("submit-button-container").innerHTML = `
-      <button class="btn" type="submit">Login</button>
+      <button class="button" type="submit">Login</button>
     `;
   }
 
-  // Method untuk cleanup ketika meninggalkan halaman
   destroy() {
     document.body.classList.remove("auth-page");
   }
