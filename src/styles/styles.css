@@ -1317,9 +1317,11 @@ footer {
   padding: 20px 20px;
 }
 
-#chart {
-  max-width: 1200px;
-  margin: 35px auto;
-  width: 100%;
+#line-chart {
+  width: 700px;
   height: auto;
+}
+
+.chart-container {
+  margin: 20px 40px;
 }
