@@ -19,21 +19,21 @@ export default class PredictionHistoryPage {
                 <tbody>
                      <tr>
                        <th scope="row">1</th>
-                           <td>24/5/25</td>
+                           <td>01/03/24</td>
                            <td>12</td>
                            <td>105.452,90 USD</td>
                            <td></td>
                      </tr>
                      <tr>
                        <th scope="row">2</th>
-                           <td>13/6/25</td>
+                           <td>01/09/24</td>
                            <td>17</td>
                            <td>105.452,90 USD</td>
                            <td></td>
                      </tr>
                      <tr>
                       <th scope="row">3</th>
-                           <td>24/3/25</td>
+                           <td>01/12/24</td>
                            <td>12</td>
                            <td>105.452,90 USD</td>
                            <td></td>
