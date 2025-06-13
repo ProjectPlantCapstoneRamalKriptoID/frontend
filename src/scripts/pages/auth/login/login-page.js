@@ -16,15 +16,6 @@ export default class LoginPage {
             <h1 class="login__title">RAMALKRIPTO.ID</h1>
             <h2 class="login__subtitle">Login</h2>
 
-                <a data-mdb-ripple-init class="google btn-lg btn-block" href="#!" role="button">
-                <img src="./images/google.png" alt="Google Icon" class="login__google-icon">
-                <span class="login__google-text"> Login dengan Google</span>
-                </a>
-
-            <div class="divider d-flex align-items-center my-4">
-              <p class="text-center fw-bold mx-3 mb-0 text-muted">ATAU</p>
-            </div>  
-
             <p class="login__description">Masukkan email dan kata sandi Anda</p>
           
             <form id="login-form" class="login-form">

@@ -23,6 +23,26 @@ export function generateMainNavigationListTemplate() {
   `;
 }
 
+export function generateUnauthenticatedNavigationListTemplate() {
+  return `
+    <li><a id="login" class="login-button" href="#/login"></i> Login</a></li>
+    <li><a id="signup" class="signup-button" href="#/register"></i> Sign Up</a></li>
+  `;
+}
+
+export function generateAuthenticatedNavigationListTemplate() {
+  return `
+   <li class="profile-container">
+        <a id="logout-button" href="#/logout" class="profile-dropdown-item logout-item">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </div>
+    </li>
+
+  `;
+}
+
 export function generateArticlesListEmptyTemplate() {
   return `
     <div id="articles-list-empty" class="articles-list__empty">
@@ -92,5 +112,17 @@ export function generateArticleItemTemplate(article) {
         </div>
       </div>
     </div>
+  `;
+}
+
+export function generateArticleDetailImageTemplate(imageUrl = null, alt = "") {
+  if (!imageUrl) {
+    return `
+      <img class="article-detail__image" src="images/placeholder-image.jpg" alt="Placeholder Image">
+    `;
+  }
+
+  return `
+    <img class="article-detail__image" src="${imageUrl}" alt="${alt}">
   `;
 }
