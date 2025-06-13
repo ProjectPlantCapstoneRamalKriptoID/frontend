@@ -40,25 +40,37 @@ export default class ArticlePage {
       .map((article) => generateArticleItemTemplate(article))
       .join("");
 
-    document.getElementById("articles-list").innerHTML = articlesHTML;
+    const articlesListElement = document.getElementById("articles-list");
+    if (articlesListElement) {
+      articlesListElement.innerHTML = articlesHTML;
+    }
   }
 
   populateArticlesListEmpty() {
-    document.getElementById("articles-list").innerHTML =
-      generateArticlesListEmptyTemplate();
+    const articlesListElement = document.getElementById("articles-list");
+    if (articlesListElement) {
+      articlesListElement.innerHTML = generateArticlesListEmptyTemplate();
+    }
   }
 
   populateArticlesListError(message) {
-    document.getElementById("articles-list").innerHTML =
-      generateArticlesListErrorTemplate(message);
+    const articlesListElement = document.getElementById("articles-list");
+    if (articlesListElement) {
+      articlesListElement.innerHTML = generateArticlesListErrorTemplate(message);
+    }
   }
 
   showLoading() {
-    document.getElementById("articles-list-loading-container").innerHTML =
-      generateLoaderAbsoluteTemplate();
+    const loadingContainer = document.getElementById("articles-list-loading-container");
+    if (loadingContainer) {
+      loadingContainer.innerHTML = generateLoaderAbsoluteTemplate();
+    }
   }
 
   hideLoading() {
-    document.getElementById("articles-list-loading-container").innerHTML = "";
+    const loadingContainer = document.getElementById("articles-list-loading-container");
+    if (loadingContainer) {
+      loadingContainer.innerHTML = "";
+    }
   }
 }
