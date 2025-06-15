@@ -25,7 +25,7 @@ export function generateMainNavigationListTemplate() {
 
 export function generateUnauthenticatedNavigationListTemplate() {
   return `
-    <li><a id="login" class="login-button" href="#/"></i> Login</a></li>
+    <li><a id="login" class="login-button" href="#/login"></i> Login</a></li>
     <li><a id="signup" class="signup-button" href="#/register"></i> Sign Up</a></li>
   `;
 }
