@@ -109,11 +109,6 @@ export async function getRegister({ name, email, password }) {
       throw new Error('Format email tidak valid');
     }
 
-    // Password validation
-    if (password.length < 6) {
-      throw new Error('Password minimal 6 karakter');
-    }
-
     const requestData = { name: name.trim(), email: email.toLowerCase().trim(), password };
     
     // Log the data being sent (without password)
@@ -252,7 +247,6 @@ export async function verifyEmail(token) {
     console.log("Token length:", token.length);
     console.log("Token type:", typeof token);
 
-    // Clean the token - remove any whitespace or special characters
     const cleanToken = token.trim();
     console.log("Cleaned token:", cleanToken);
 
