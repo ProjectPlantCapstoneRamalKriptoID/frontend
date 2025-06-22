@@ -79,10 +79,6 @@ export default class RegisterPage {
           return;
         }
 
-        if (password.length < 8) {
-          this.registerFailed("Password harus minimal 8 karakter");
-          return;
-        }
 
         const data = { name, email, password };
         await this.#presenter.getRegister(data);
