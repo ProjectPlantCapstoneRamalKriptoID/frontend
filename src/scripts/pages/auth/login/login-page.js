@@ -22,12 +22,11 @@ export default class LoginPage {
               <div class="form-control">
                 <input id="email-input" type="email" name="email" placeholder="Email" required>
               </div>
+
               <div class="form-control">
                 <input id="password-input" type="password" name="password" placeholder="Password" required>
               </div>
-              <p class="login-form__forgot-password">
-                <a href="#/forgot-password">Lupa Kata Sandi?</a>  
-              </p>
+              
               <div class="form-buttons">
                 <div id="submit-button-container">
                   <button class="button" type="submit">Login</button>
@@ -36,7 +35,6 @@ export default class LoginPage {
                 <p class="login-form__do-not-have-account">Tidak punya akun? <a href="#/register">Register</a></p>
               </div>
             </form>
-            
           </div>
 
            <div class="login-image-container">

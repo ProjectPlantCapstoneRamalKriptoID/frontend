@@ -16,7 +16,7 @@ export function generateLoaderAbsoluteTemplate() {
 
 export function generateMainNavigationListTemplate() {
   return `
-    <li><a id="article-list-button" class="article-list-button" href="#/">Beranda</a></li>
+    <li><a id="article-list-button" class="article-list-button" href="#/home">Beranda</a></li>
     <li><a id="article-button" class="article-button" href="#/article">Artikel</a></li>
     <li><a id="prediction-button" class="prediction-button" href="#/prediction">Prediksi</a></li>
     <li><a id="prediction-button" class="prediction-button" href="#/prediction-history">Riwayat Prediksi</a></li>

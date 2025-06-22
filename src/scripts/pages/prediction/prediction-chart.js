@@ -74,7 +74,7 @@ export default class PredictionChart {
           x: {
             title: {
               display: true,
-              text: "Year",
+              text: "Tahun",
             },
           },
           y: {
